@@ -1,0 +1,88 @@
+<html>
+  <head>
+    <title>Libraby App</title>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Amatic+SC:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Amatic+SC&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <div class="title"><h1>Libary</h1></div>
+    <div class="entries">
+      <input
+        type="button"
+        id="button"
+        class="my-buttons"
+        value="Get All Users."
+      /><br />
+      <input type="text" value="Author" id="author" /><b class="inputs"></b
+      ><br />
+      <input type="text" value="Title" id="title" /><b class="inputs"></b><br />
+      <select name="genre" id="genre">
+        <option value="SciFi">Science Fiction</option>
+        <option value="Satire">Satire</option>
+        <option value="ActAdv">Action and Adventure</option>
+        <option value="Romance">Romance</option>
+        <option value="Mystery">Mystery</option>
+        <option value="Horror">Horror</option>
+      </select>
+      <b class="genres"></b><br />
+      <input type="text" id="price" value="Price" /><b class="inputs"></b><br />
+      <input
+        type="button"
+        id="createUser"
+        class="my-buttons"
+        value="Create User"
+      /><br />
+    </div>
+
+    <div id="result"></div>
+  </body>
+  <script type="text/javascript">
+    document
+      .getElementById("createBook")
+      .addEventListener("click", function (event) {
+        const xhr = new XMLHttpRequest();
+        xhr.open("POST", "http://localhost:4500/addBook");
+        xhr.setRequestHeader("Content-Type", "application/json");
+        const book = {
+          author: document.getElementById("author").value,
+          title: document.getElementById("title").value,
+          genre: document.getElementById("genre").value,
+          price: document.getElementById("price").value,
+        };
+        xhr.send(JSON.stringify(book));
+        xhr.onreadystatechange = function () {
+          if (xhr.readyState == 4 && xhr.status == 200) {
+            alert("OK");
+          }
+        };
+      });
+
+    const button = document.getElementById("button");
+    button.addEventListener("click", function (event) {
+      const xhr = new XMLHttpRequest();
+      xhr.open("GET", "http://localhost:3000/getUsers");
+      xhr.send();
+      xhr.onreadystatechange = function () {
+        if (xhr.readyState == 4) {
+          if (xhr.status == 200) {
+            const result = JSON.parse(xhr.responseText);
+            const pElem = document.createElement("p");
+            const text = document.createTextNode(result[0].lname);
+            pElem.appendChild(text);
+            const divElem = document.getElementById("result");
+            divElem.appendChild(pElem);
+          }
+        }
+      };
+    });
+  </script>
+</html>

@@ -1,0 +1,44 @@
+<html>
+    <head>
+        <title>This will make me mad for sure.</title>
+        <style type="text/css">
+            h1 { 
+                text-align: center;
+                font-family:fantasy;
+                background-color: darkgray;
+            }
+            b.inputs {
+                color:slategray;
+                border:1px solid black;
+                margin: 5px;
+                
+            }
+            b.genres {
+                color:slategray;
+                border:1px solid black;
+                margin: 26px;
+                
+            }
+            
+        </style>
+    </head>
+    <body>
+        <h1>Libary</h1>
+        <input type="button" id="button" value="Get All Users."><br>
+        <input type="text" id="Author"><b class = "inputs">Author</b><br>
+        <input type="text" id="Title"><b class = "inputs">Title</b><br>
+        <select name="genre" id="genre">
+            <option value="SciFi">Science Fiction</option>
+            <option value="Satire">Satire</option>
+            <option value="ActAdv">Action and Adventure</option>
+            <option value="Romance">Romance</option>
+            <option value="Mystery">Mystery</option>
+            <option value="Horror">Horror</option>
+        </select>
+        <b class = "genres">Genre</b><br>
+        <input type="text" id="Price"><b class = "inputs">Price</b><br>
+        <input type="button" id="createUser" value="Create User"><br>
+        <div id="result"></div>
+    </body>
+
+</html>
